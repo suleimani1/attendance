@@ -1,0 +1,9 @@
+{
+    "require": {
+        "endroid/qr-code": "4.0",
+        "chillerlan/php-qrcode": "*"
+    },
+    "config": {
+        "process-timeout": 600
+    }
+}

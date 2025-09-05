@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+        --primary-color: #3498db;
+        --secondary-color: #2ecc71;
+        --dark-blue: #2980b9;
+        --dark-green: #27ae60;
+        --light-bg: #f5f9fc;
+        --text-color: #333;
+        --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e0f0ff 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .registration-container {
+        display: flex;
+        width: 1000px;
+        max-width: 95%;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+    }
+
+    .brand-section {
+        flex: 1;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: white;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .brand-logo {
+        width: 120px;
+        height: 120px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 40px;
+        color: var(--primary-color);
+    }
+
+    .brand-section h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .brand-section p {
+        font-size: 16px;
+        opacity: 0.9;
+        line-height: 1.6;
+    }
+
+    .registration-section {
+        flex: 1.5;
+        padding: 30px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .registration-header {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .registration-header h2 {
+        color: var(--primary-color);
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .registration-header p {
+        color: #777;
+        font-size: 15px;
+    }
+
+    .registration-form {
+        width: 100%;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .input-group i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+        z-index: 1;
+    }
+
+    .input-group input, .input-group select {
+        width: 100%;
+        padding: 15px 15px 15px 45px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s;
+        appearance: none;
+        background: white;
+    }
+
+    .input-group select {
+        padding-right: 30px;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 16px;
+    }
+
+    .input-group input:focus, .input-group select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        outline: none;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+    }
+
+    .register-button {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 15px;
+    }
+
+    .register-button:hover {
+        background: linear-gradient(to right, var(--dark-blue), var(--dark-green));
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #777;
+        font-size: 15px;
+    }
+
+    .login-link a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link a:hover {
+        text-decoration: underline;
+    }
+
+    #msg {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 900px) {
+        .registration-container {
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .brand-section {
+            padding: 25px 20px;
+        }
+        
+        .registration-section {
+            padding: 25px 20px;
+            max-height: none;
+        }
+    }
+
+    /* Custom scrollbar for form */
+    .registration-section::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .registration-section::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    .registration-section::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 10px;
+    }
+
+    .registration-section::-webkit-scrollbar-thumb:hover {
+        background: var(--dark-blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="registration-container">
+    <div class="brand-section">
+        <div class="brand-logo">
+            <!-- <i class="fas fa-graduation-cap"></i> -->
+             <i class="fa-solid fa-qrcode"></i>
+        </div>
+        <h1>Smart Attendance</h1>
+        <p>Create an account.</p>
+    </div>
+    
+    <div class="registration-section">
+        <div class="registration-header">
+            <h2>Student Registration</h2>
+            <p>Fill in your details to create an account</p>
+        </div>
+        
+        <form class="registration-form" id="regForm" onsubmit="registerUser(event)">
+            <div class="input-group">
+                <i class="fas fa-id-card"></i>
+                <input type="text" name="registration_number" placeholder="Registration Number" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-graduation-cap"></i>
+                <select name="program" required>
+                    <option value="">-- Select Program --</option>
+                    <option>Computer Science</option>
+                    <option>Software Engineering</option>
+                    <option>Information Technology</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>Morning Course:</label>
+                <i class="fas fa-sun"></i>
+                <select name="morning_course" required>
+                    <option value="">-- Select Morning Course --</option>
+                    <option>Web Technology</option>
+                    <option>Computer Networking</option>
+                    <option>Java Programming</option>
+                    <option>Game Development</option>
+                    <option>Instructional Design and Video</option>
+                    <option>Customization of Open Source</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>Evening Course:</label>
+                <i class="fas fa-moon"></i>
+                <select name="evening_course" required>
+                    <option value="">-- Select Evening Course --</option>
+                    <option>Data Science</option>
+                    <option>Computer Systems Maintenance</option>
+                    <option>Ethical Hacking and Digital</option>
+                    <option>Mobile Apps Development</option>
+                    <option>Server Administration(Linux)</option>
+                    <option>Mobile Device Maintenance</option>
+                    <option>GIS Technologies</option>
+                    <option>Multimedia and Animation</option>
+                    <option>Oracle Database Administration</option>
+                    <option>Embedded Systems</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            
+            <button type="submit" class="register-button">Register</button>
+            
+            <p id="msg"></p>
+            
+            <div class="login-link">
+                <p>Already have an account? <a href="index.php">Login here</a></p>
+            </div>
+        </form>
+    </div>
+  </div>
+
+  <script>
+    async function registerUser(e) {
+      e.preventDefault();
+      const form = e.target;
+      const fd = new FormData(form);
+      const msgElement = document.getElementById("msg");
+      
+      try {
+        const res = await fetch("../api/auth_register.php", {method: "POST", body: fd});
+        const data = await res.json();
+        
+        if (res.ok) {
+          msgElement.textContent = "Registration successful! Redirecting to login...";
+          msgElement.style.color = "green";
+          setTimeout(() => window.location.href = "index.php", 1500);
+        } else {
+          msgElement.textContent = (data.error || "Registration failed");
+          msgElement.style.color = "red";
+        }
+      } catch (error) {
+        msgElement.textContent = "Network error. Please try again.";
+        msgElement.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>

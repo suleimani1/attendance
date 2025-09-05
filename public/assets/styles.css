@@ -1,0 +1,49 @@
+body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f6f7fb}
+header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#fff;border-bottom:1px solid #e7e7e7}
+.card{background:#fff;margin:16px;padding:16px;border:1px solid #e7e7e7;border-radius:12px}
+input,button,select{padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:10px}
+button{cursor:pointer}
+video{width:100%;max-width:420px;border:1px solid #ddd;border-radius:12px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border-bottom:1px solid #eee;padding:8px;text-align:left}
+
+/* Wrap table in a scrollable container on small screens */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Make table cells wrap and shrink gracefully */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  th, td {
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  .card {
+    margin: 12px;
+    padding: 12px;
+  }
+
+  header h2 {
+    font-size: 18px;
+  }
+
+  button, input, select {
+    font-size: 14px;
+  }
+}

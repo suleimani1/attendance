@@ -1,0 +1,27 @@
+# Composer dependencies
+/vendor/
+
+# Composer lock file (optional, ignore if you don’t want to lock versions in repo)
+composer.lock
+
+# OS / Editor junk files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# System/Temporary files
+*.bak
+*.tmp
+*.swp
+
+# Database dumps
+*.sql
+
+# Cache / Sessions
+/storage/
+.cache/
+.sess/
