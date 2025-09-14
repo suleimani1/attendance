@@ -19,7 +19,7 @@ Thumbs.db
 *.swp
 
 # Database dumps
-*.sql
+# *.sql
 
 # Cache / Sessions
 /storage/
