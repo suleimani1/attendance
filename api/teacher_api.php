@@ -1,6 +1,6 @@
 <?php
 
-use Exception;
+// use Exception;
 
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
@@ -25,17 +25,17 @@ try {
         throw new Exception('Not logged in. Please login again.');
     }
     
-    // Check if user has teacher role
+
     if ($_SESSION['user']['role'] !== 'teacher') {
         throw new Exception('Access denied. Teacher role required.');
     }
 
-    // Get teacher_id from session - use different approaches to find it
+
     $teacher_id = $_SESSION['user']['user_id'] ?? 
                  $_SESSION['user']['id'] ?? 
                  (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null);
     
-    // If still not found, try to get from database using email/registration number
+
     if (empty($teacher_id)) {
         $email = $_SESSION['user']['email'] ?? null;
         $reg_no = $_SESSION['user']['registration_number'] ?? null;
@@ -57,7 +57,7 @@ try {
         }
     }
 
-    // Final check if teacher_id is found
+    
     if (empty($teacher_id)) {
         throw new Exception('Teacher ID not found. Please login again. Session: ' . json_encode($_SESSION['user']));
     }
@@ -68,7 +68,7 @@ try {
         throw new Exception('No action specified');
     }
 
-    // Clean any output again before processing
+    
     ob_clean();
 
     switch ($action) {
@@ -100,7 +100,7 @@ try {
     $response = ['success' => false, 'error' => $e->getMessage()];
 }
 
-// Clean any final output and send JSON
+// Clean final output and send JSON
 ob_end_clean();
 header('Content-Type: application/json');
 echo json_encode($response);
@@ -147,7 +147,6 @@ function generateUniqueQrToken($conn, $maxAttempts = 10) {
         // Generate a random token (16 characters like your existing format)
         $token = substr(bin2hex(random_bytes(16)), 0, 16);
         
-        // Check if token already exists
         $check_stmt = $conn->prepare("SELECT session_id FROM sessions WHERE qr_token = ?");
         $check_stmt->bind_param('s', $token);
         $check_stmt->execute();

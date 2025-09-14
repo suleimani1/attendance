@@ -424,7 +424,7 @@ function onScanFailure(error) {
   console.log('Scan error (usually harmless):', error);
 }
 
-// submitAttendance - robust parsing and credentials included
+// submitAttendance 
 async function submitAttendance(token, latitude, longitude) {
   const fd = new FormData();
   fd.append('token', token);
@@ -439,7 +439,7 @@ async function submitAttendance(token, latitude, longitude) {
     });
 
     const raw = await response.text();
-    // log raw response for debugging (remove once stable)
+    
     console.debug('submit raw response:', raw);
 
     let data;
@@ -478,7 +478,7 @@ async function submitAttendance(token, latitude, longitude) {
   }
 }
 
-// loadAttendance - robust, checks for 401 and bad JSON
+// loadAttendance 
 async function loadAttendance() {
   try {
     const summaryEl = document.getElementById("summary");

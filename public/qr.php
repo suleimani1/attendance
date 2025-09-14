@@ -1,8 +1,8 @@
 <?php
-// public/qr.php
+
 declare(strict_types=1);
 
-@ini_set('display_errors', '0');          // don't print warnings into the image
+@ini_set('display_errors', '0');          
 @ini_set('zlib.output_compression', 'Off');
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -21,12 +21,11 @@ if ($token === '') {
     exit('Token parameter is required');
 }
 
-// You can switch this to "ATTENDANCE:$token" if you prefer
 $payload = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http')
          .'://'.$_SERVER['HTTP_HOST'].'/smart1/api/student_scan.php?token='
          .rawurlencode($token);
 
-// Build QR (Endroid v4 style)
+// Build QR 
 $qr = QrCode::create($payload)
     ->setEncoding(new Encoding('UTF-8'))
     ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
@@ -38,12 +37,6 @@ $qr = QrCode::create($payload)
 $png = (new PngWriter())->write($qr);
 $bytes = $png->getString();
 
-// OPTIONAL: save a copy to disk
-// $dir = __DIR__.'/../qrcodes';
-// if (!is_dir($dir)) { @mkdir($dir, 0775, true); }
-// $png->saveToFile($dir.'/attendance_qr_'.$token.'.png');
-
-// Ensure nothing else is in the output
 while (ob_get_level() > 0) { ob_end_clean(); }
 
 header('Content-Type: image/png');

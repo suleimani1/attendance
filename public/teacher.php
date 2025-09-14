@@ -712,7 +712,7 @@ function checkMobileView() {
 window.addEventListener('resize', checkMobileView);
 checkMobileView();
 
-// Add location buttons to latitude and longitude inputs
+// location buttons to latitude and longitude inputs
 document.addEventListener('DOMContentLoaded', function() {
   const latInput = document.getElementById('latitude');
   const lngInput = document.getElementById('longitude');
@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function createClass(e) {
   e.preventDefault();
   const fd = new FormData(e.target);
-  fd.append('action', 'create_class'); // Add action parameter
+  fd.append('action', 'create_class'); 
   
   const msgEl = document.getElementById('classMsg');
   msgEl.textContent = 'Creating class...';
